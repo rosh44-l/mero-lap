@@ -1,1 +1,120 @@
-<h1> hello kic ppl  .......</h1>
+<h1> <!DOCTYPE html>
+<html>
+<head>
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #222;
+      color: white;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 5px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: #444;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .cell:hover {
+      background: #666;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Tic Tac Toe</h1>
+<h2 id="status">Player X's turn</h2>
+
+<div class="board">
+  <div class="cell" onclick="play(this,0)"></div>
+  <div class="cell" onclick="play(this,1)"></div>
+  <div class="cell" onclick="play(this,2)"></div>
+  <div class="cell" onclick="play(this,3)"></div>
+  <div class="cell" onclick="play(this,4)"></div>
+  <div class="cell" onclick="play(this,5)"></div>
+  <div class="cell" onclick="play(this,6)"></div>
+  <div class="cell" onclick="play(this,7)"></div>
+  <div class="cell" onclick="play(this,8)"></div>
+</div>
+
+<button onclick="resetGame()">Restart</button>
+
+<script>
+  let board = ["", "", "", "", "", "", "", "", ""];
+  let currentPlayer = "X";
+  let gameOver = false;
+
+  function play(cell, index) {
+    if (board[index] !== "" || gameOver) return;
+
+    board[index] = currentPlayer;
+    cell.innerText = currentPlayer;
+
+    if (checkWin()) {
+      document.getElementById("status").innerText =
+        "Player " + currentPlayer + " wins!";
+      gameOver = true;
+      return;
+    }
+
+    if (!board.includes("")) {
+      document.getElementById("status").innerText = "It's a draw!";
+      gameOver = true;
+      return;
+    }
+
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    document.getElementById("status").innerText =
+      "Player " + currentPlayer + "'s turn";
+  }
+
+  function checkWin() {
+    const wins = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+
+    return wins.some(pattern =>
+      pattern.every(i => board[i] === currentPlayer)
+    );
+  }
+
+  function resetGame() {
+    board = ["", "", "", "", "", "", "", "", ""];
+    currentPlayer = "X";
+    gameOver = false;
+    document.getElementById("status").innerText = "Player X's turn";
+    document.querySelectorAll(".cell").forEach(cell => cell.innerText = "");
+  }
+</script>
+
+</body>
+</html>
+
+
