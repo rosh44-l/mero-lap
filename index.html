@@ -1,69 +1,28 @@
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<ht1> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Players List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sports Players Directory</h1>
+    </header>
 
-/* Body Stylings */
-body {
-    font-family: Arial, sans-serif;
-    background: #f0f8ff;
-    color: #333;
-}
+    <nav>
+        <button onclick="showSport('soccer')">Soccer</button>
+        <button onclick="showSport('volleyball')">Volleyball</button>
+        <button onclick="showSport('football')">Football</button>
+        <button onclick="showSport('badminton')">Badminton</button>
+    </nav>
 
-/* Header */
-header {
-    background: #00008b;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-}
+    <section id="players-list">
+        <!-- Player lists will show here -->
+    </section>
 
-/* Navigation */
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 1rem 0;
-}
-
-nav button {
-    padding: 0.7rem 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-nav button:hover {
-    transform: scale(1.1);
-}
-
-/* Button Colors */
-nav button:nth-child(1) { background: #28a745; color: #fff; }
-nav button:nth-child(2) { background: #ff4500; color: #fff; }
-nav button:nth-child(3) { background: #1e90ff; color: #fff; }
-nav button:nth-child(4) { background: #ff1493; color: #fff; }
-
-/* Players List */
-#players-list {
-    max-width: 800px;
-    margin: auto;
-    padding: 1rem;
-}
-
-.player-card {
-    background: #fff;
-    padding: 0.8rem;
-    margin: 0.6rem 0;
-    border-radius: 5px;
-    border-left: 5px solid #00008b;
-}
-
-.player-card h2 {
-    font-size: 1.2rem;
-    color: #00008b;
-}
-
+    <script src="script.js"></script>
+</body>
+</html>
+</ht1>
