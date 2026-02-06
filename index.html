@@ -1,120 +1,69 @@
-<h1> <!DOCTYPE html>
-<html>
-<head>
-  <title>Tic Tac Toe</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      background: #222;
-      color: white;
-    }
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    h1 {
-      margin-top: 20px;
-    }
+/* Body Stylings */
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f8ff;
+    color: #333;
+}
 
-    .board {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      gap: 5px;
-      justify-content: center;
-      margin-top: 30px;
-    }
+/* Header */
+header {
+    background: #00008b;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
 
-    .cell {
-      width: 100px;
-      height: 100px;
-      background: #444;
-      font-size: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
 
-    .cell:hover {
-      background: #666;
-    }
+nav button {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
+nav button:hover {
+    transform: scale(1.1);
+}
 
-<h1>Tic Tac Toe</h1>
-<h2 id="status">Player X's turn</h2>
+/* Button Colors */
+nav button:nth-child(1) { background: #28a745; color: #fff; }
+nav button:nth-child(2) { background: #ff4500; color: #fff; }
+nav button:nth-child(3) { background: #1e90ff; color: #fff; }
+nav button:nth-child(4) { background: #ff1493; color: #fff; }
 
-<div class="board">
-  <div class="cell" onclick="play(this,0)"></div>
-  <div class="cell" onclick="play(this,1)"></div>
-  <div class="cell" onclick="play(this,2)"></div>
-  <div class="cell" onclick="play(this,3)"></div>
-  <div class="cell" onclick="play(this,4)"></div>
-  <div class="cell" onclick="play(this,5)"></div>
-  <div class="cell" onclick="play(this,6)"></div>
-  <div class="cell" onclick="play(this,7)"></div>
-  <div class="cell" onclick="play(this,8)"></div>
-</div>
+/* Players List */
+#players-list {
+    max-width: 800px;
+    margin: auto;
+    padding: 1rem;
+}
 
-<button onclick="resetGame()">Restart</button>
+.player-card {
+    background: #fff;
+    padding: 0.8rem;
+    margin: 0.6rem 0;
+    border-radius: 5px;
+    border-left: 5px solid #00008b;
+}
 
-<script>
-  let board = ["", "", "", "", "", "", "", "", ""];
-  let currentPlayer = "X";
-  let gameOver = false;
-
-  function play(cell, index) {
-    if (board[index] !== "" || gameOver) return;
-
-    board[index] = currentPlayer;
-    cell.innerText = currentPlayer;
-
-    if (checkWin()) {
-      document.getElementById("status").innerText =
-        "Player " + currentPlayer + " wins!";
-      gameOver = true;
-      return;
-    }
-
-    if (!board.includes("")) {
-      document.getElementById("status").innerText = "It's a draw!";
-      gameOver = true;
-      return;
-    }
-
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
-    document.getElementById("status").innerText =
-      "Player " + currentPlayer + "'s turn";
-  }
-
-  function checkWin() {
-    const wins = [
-      [0,1,2],[3,4,5],[6,7,8],
-      [0,3,6],[1,4,7],[2,5,8],
-      [0,4,8],[2,4,6]
-    ];
-
-    return wins.some(pattern =>
-      pattern.every(i => board[i] === currentPlayer)
-    );
-  }
-
-  function resetGame() {
-    board = ["", "", "", "", "", "", "", "", ""];
-    currentPlayer = "X";
-    gameOver = false;
-    document.getElementById("status").innerText = "Player X's turn";
-    document.querySelectorAll(".cell").forEach(cell => cell.innerText = "");
-  }
-</script>
-
-</body>
-</html>
-
+.player-card h2 {
+    font-size: 1.2rem;
+    color: #00008b;
+}
 
