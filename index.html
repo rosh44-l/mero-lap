@@ -1,118 +1,129 @@
-<!DOCTYPE html>
-<html>
+<ht1><!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Tic Tac Toe</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      background: #222;
-      color: white;
-    }
-
-    h1 {
-      margin-top: 20px;
-    }
-
-    .board {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      gap: 5px;
-      justify-content: center;
-      margin-top: 30px;
-    }
-
-    .cell {
-      width: 100px;
-      height: 100px;
-      background: #444;
-      font-size: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .cell:hover {
-      background: #666;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Elegant Jewellery Store</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8f8f8;
+}
+header {
+  background: #111;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+nav {
+  background: gold;
+  padding: 10px;
+  text-align: center;
+}
+nav a {
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.card h3 {
+  margin: 10px 0;
+}
+.price {
+  color: green;
+  font-size: 18px;
+}
+.old-price {
+  text-decoration: line-through;
+  color: red;
+}
+.stock {
+  color: blue;
+}
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Tic Tac Toe</h1>
-<h2 id="status">Player X's turn</h2>
+<header>
+<h1>✨ Elegant Jewellery Collection ✨</h1>
+<p>Gold | Silver | Minimal | Heavy Jewellery</p>
+</header>
 
-<div class="board">
-  <div class="cell" onclick="play(this,0)"></div>
-  <div class="cell" onclick="play(this,1)"></div>
-  <div class="cell" onclick="play(this,2)"></div>
-  <div class="cell" onclick="play(this,3)"></div>
-  <div class="cell" onclick="play(this,4)"></div>
-  <div class="cell" onclick="play(this,5)"></div>
-  <div class="cell" onclick="play(this,6)"></div>
-  <div class="cell" onclick="play(this,7)"></div>
-  <div class="cell" onclick="play(this,8)"></div>
+<nav>
+<a href="#">Rings</a>
+<a href="#">Necklace</a>
+<a href="#">Earrings</a>
+<a href="#">Bangles</a>
+</nav>
+
+<div class="products">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1600180758890-6f1c0a35bcd4" alt="Ring">
+<h3>Stainless Gold Ring</h3>
+<p class="old-price">Rs 1500</p>
+<p class="price">Rs 1200</p>
+<p class="stock">Remaining: 8</p>
+<p>Discount: 20%</p>
 </div>
 
-<button onclick="resetGame()">Restart</button>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8e57" alt="Necklace">
+<h3>Silver Necklace</h3>
+<p class="old-price">Rs 3000</p>
+<p class="price">Rs 2500</p>
+<p class="stock">Remaining: 5</p>
+<p>Discount: 15%</p>
+</div>
 
-<script>
-  let board = ["", "", "", "", "", "", "", "", ""];
-  let currentPlayer = "X";
-  let gameOver = false;
+<div class="card">
+<img src="https://images.unsplash.com/photo-1585386959984-a415522b8319" alt="Earrings">
+<h3>Gold Earrings</h3>
+<p class="old-price">Rs 2000</p>
+<p class="price">Rs 1600</p>
+<p class="stock">Remaining: 12</p>
+<p>Discount: 20%</p>
+</div>
 
-  function play(cell, index) {
-    if (board[index] !== "" || gameOver) return;
+<div class="card">
+<img src="https://images.unsplash.com/photo-1618354691214-0b0db0bde5bc" alt="Bangle">
+<h3>Heavy Bangles</h3>
+<p class="old-price">Rs 5000</p>
+<p class="price">Rs 4200</p>
+<p class="stock">Remaining: 3</p>
+<p>Discount: 16%</p>
+</div>
 
-    board[index] = currentPlayer;
-    cell.innerText = currentPlayer;
+</div>
 
-    if (checkWin()) {
-      document.getElementById("status").innerText =
-        "Player " + currentPlayer + " wins!";
-      gameOver = true;
-      return;
-    }
-
-    if (!board.includes("")) {
-      document.getElementById("status").innerText = "It's a draw!";
-      gameOver = true;
-      return;
-    }
-
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
-    document.getElementById("status").innerText =
-      "Player " + currentPlayer + "'s turn";
-  }
-
-  function checkWin() {
-    const wins = [
-      [0,1,2],[3,4,5],[6,7,8],
-      [0,3,6],[1,4,7],[2,5,8],
-      [0,4,8],[2,4,6]
-    ];
-
-    return wins.some(pattern =>
-      pattern.every(i => board[i] === currentPlayer)
-    );
-  }
-
-  function resetGame() {
-    board = ["", "", "", "", "", "", "", "", ""];
-    currentPlayer = "X";
-    gameOver = false;
-    document.getElementById("status").innerText = "Player X's turn";
-    document.querySelectorAll(".cell").forEach(cell => cell.innerText = "");
-  }
-</script>
+<footer>
+<p>© 2026 Elegant Jewellery Store | All Rights Reserved</p>
+</footer>
 
 </body>
-</html>
+</html></ht1>
